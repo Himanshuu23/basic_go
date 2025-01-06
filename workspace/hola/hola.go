@@ -7,5 +7,5 @@ import (
 )
 
 func main () {
-    fmt.Println(reverse.String("u evol I"))
+    fmt.Println(reverse.String("u evol I"), reverse.Int(96))
 }
