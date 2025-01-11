@@ -1,0 +1,10 @@
+package arrays
+
+import (
+	"fmt"
+)
+
+func main() {
+	Array := arrays.Initialization()
+	fmt.Println(Array)
+}
