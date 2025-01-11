@@ -1,0 +1,11 @@
+package main
+
+import "fmt"
+
+func main() {
+	Array := [3]string{"this", "is", "string"}
+	
+	for _, item := range Array {
+		fmt.Println(item)
+	}
+}
