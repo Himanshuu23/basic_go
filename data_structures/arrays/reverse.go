@@ -7,17 +7,17 @@ type ArrayItems interface {
 }
 
 func main() {
-	Array := []T{}
+	Array := []int{1, 2, 3, 4, 5, 6}
 
 	Reversed := reverse(Array)
 	fmt.Println(Reversed)
 }
 
 func reverse[T ArrayItems](array []T) []T {
-	reverse := make([]T{})
+	reverse := []T{}
 
-	for _, item := range array {
-		reverse = append(reverse, item)
+	for i := len(array) - 1; i >= 0; i-- {
+		reverse = append(reverse, array[i])
 	}
 
 	return reverse
