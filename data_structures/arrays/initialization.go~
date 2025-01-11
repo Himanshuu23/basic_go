@@ -1,15 +1,15 @@
-package arrays
+package main 
 
 import "fmt"
 
-func Initialization() []int {
-	array := make([5]int{})
+func Initialization() {
+	var Array [5]string
+	
+	fmt.Println("Enter the elements of the array: ")
 
-	fmt.Println("Start entering the elements of the array: ")
-	
-	for i := range array {
-		fmt.Scanln(&array[i])
+	for i := range Array {
+		fmt.Scanln(&Array[i])
 	}
-	
-	return array
+
+	fmt.Println(Array)
 }
