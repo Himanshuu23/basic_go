@@ -15,11 +15,11 @@ func main() {
 	sum2 := sum(array2)
 	sum3 := sum(array3)
 
-	fmt.Prinln(sum1, sum2, sum3)
+	fmt.Println(sum1, sum2, sum3)
 }
 
-func sum(Array []Sum)[sum Sum] {
-	var Sum sum
+func sum[T Sum](Array [5]T) T {
+	var sum T
 
 	for i := range Array {
 		sum += Array[i]
