@@ -9,11 +9,10 @@ func main() {
 }
 
 func sort(array []int) []int {
-    for i := range len(array) {
-        for j := 0; j <= len(array) - i; j++ {
-            bubble := array[0]
-            if array[j] < bubble {
-                bubble = array[j]
+    for i := range array {
+        for j := 0; j < len(array) - i -1; j++ {
+            if array[j] > array[j+1] {
+                array[j], array[j+1] = array[j+1], array[j]
             }
         }
     }
