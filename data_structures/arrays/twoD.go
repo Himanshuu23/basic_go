@@ -11,7 +11,7 @@ func main() {
 
 	for i := range array {
 		for j := range array  {
-			fmt.Print(array[i][j])
+			fmt.Print(array[i][j], " ")
 		}
 		
 		fmt.Println("\n")

@@ -13,5 +13,7 @@ func main() {
 		for j := range array  {
 			fmt.Print(array[i][j])
 		}
+		
+		fmt.Println("\n")
 	}
 }

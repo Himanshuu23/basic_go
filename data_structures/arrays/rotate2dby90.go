@@ -14,8 +14,8 @@ func main() {
 
 func rotate(array [][]int) {
 	for i := range array {
-		for j := len(array) - 1; i >= 0; i-- {
-			fmt.Print(array[j][i])
+		for j := len(array) - 1; j >= 0; j-- {
+			fmt.Print(array[j][i], " ")
 		}
 		
 		fmt.Println("\n")
