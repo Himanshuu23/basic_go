@@ -9,20 +9,16 @@ func main() {
 }
 
 func duplicates(array []int) []int {
-	nums = make(map[int]int)
-	result = []int{}
+	nums := make(map[int]int)
+	result := []int{}
 
-	for i := range array {
-		if _, found := nums[i]; found {
-			nums[i] += 1
-		} else {
-			nums[i] = 1
-		}
+	for _, value := range array {
+		nums[value]++
 	}
 
-	for i := range array {
-		if nums[i] > 1 {
-			result = append(result, nums[i])
+	for value := range nums {
+		if nums[value] > 1 {
+			result = append(result, value)
 		}
 	}
 
