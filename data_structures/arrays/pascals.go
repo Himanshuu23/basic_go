@@ -8,7 +8,11 @@ func main() {
 }
 
 func pascal(rows int) [][]int {
-	array := [][]int{}
+	array := make([][]int, rows)
+	for i := 0; i < rows; i++ {
+		array[i] = make([]int, i + 1)
+	}
+
 	for i := 0; i <= rows - 1; i++ {
 		for j := 0; j <= i; j++ {
 			if i == 0 || i == rows - 1 {
