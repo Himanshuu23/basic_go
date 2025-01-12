@@ -8,8 +8,8 @@ func main() {
 	fmt.Println(New)
 }
 
-func remove(array int[], index int) []int {
-	Array = append(array[:index], array[index+1:]...)
+func remove(array []int, index int) []int {
+	Array := append(array[:index], array[index+1:]...)
 	return Array
 }
 
