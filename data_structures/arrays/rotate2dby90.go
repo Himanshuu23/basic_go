@@ -3,15 +3,19 @@ package main
 import "fmt"
 
 func main() {
-	array := [][]int{
+	Array := [][]int{
 		{1, 2, 3},
 		{4, 5, 6},
 		{7, 8, 9},
 	}
 
+	rotate(Array)
+}
+
+func rotate(array [][]int) {
 	for i := range array {
-		for j := range array  {
-			fmt.Print(array[i][j])
+		for j := len(array) - 1; i >= 0; i-- {
+			fmt.Print(array[j][i])
 		}
 		
 		fmt.Println("\n")
