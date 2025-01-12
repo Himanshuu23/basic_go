@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	Array := pascal(3)
+	Array := pascal(5)
 	print2d(Array)
 }
 
@@ -15,14 +15,10 @@ func pascal(rows int) [][]int {
 
 	for i := 0; i <= rows - 1; i++ {
 		for j := 0; j <= i; j++ {
-			if i == 0 || i == rows - 1 {
+			if j == 0 || j == i {
 				array[i][j] = 1
 			} else {
-				if j == 0 || j == i {
-					array[i][j] = 1
-				} else {
-					array[i][j] = array[i-1][j-1] + array[i-1][j]
-				}
+				array[i][j] = array[i-1][j-1] + array[i-1][j]
 			}
 		}
 	}
@@ -32,8 +28,8 @@ func pascal(rows int) [][]int {
 
 func print2d(array [][]int) {
 	for i := range array {
-		for j := range array {
-			fmt.Print(array[i][j])
+		for j := range array[i] {
+			fmt.Print(array[i][j], " ")
 		}
 		fmt.Println("\n")
 	}
