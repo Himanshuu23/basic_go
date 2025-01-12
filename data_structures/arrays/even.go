@@ -8,17 +8,15 @@ func main() {
 	fmt.Println(New)
 }
 
-func remove(array []int, index int) []int {
-	Array := append(array[:index], array[index+1:]...)
-	return Array
-}
-
 func even(array []int) []int {
+	Array := []int{}
 	for i := range array {
 		if array[i] % 2 == 0 {
-			array = remove(array, i)
+			Array = append(Array, array[i])
+		} else {
+			continue
 		}
 	} 
 
-	return array
+	return Array
 }
