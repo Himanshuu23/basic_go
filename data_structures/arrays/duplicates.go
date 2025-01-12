@@ -1,0 +1,30 @@
+package main
+
+import "fmt"
+
+func main() {
+	Array := []int{1, 1, 2, 3, 4, 5, 5, 6}
+	duplicate := duplicates(Array)
+	fmt.Println(duplicate)
+}
+
+func duplicates(array []int) []int {
+	nums = make(map[int]int)
+	result = []int{}
+
+	for i := range array {
+		if _, found := nums[i]; found {
+			nums[i] += 1
+		} else {
+			nums[i] = 1
+		}
+	}
+
+	for i := range array {
+		if nums[i] > 1 {
+			result = append(result, nums[i])
+		}
+	}
+
+	return result
+}
