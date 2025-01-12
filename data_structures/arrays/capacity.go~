@@ -1,0 +1,8 @@
+package main
+
+import "fmt"
+
+func main() {
+	Array := make([]int, 2, 4)
+	fmt.Println(len(Array), cap(Array))
+}
