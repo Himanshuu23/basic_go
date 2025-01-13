@@ -20,6 +20,7 @@ func maximum(Map map[string]int) {
 	for key := range Map {
 		if Map[key] > val {
 			maximum = key
+			val = Map[key]
 		} else {
 			continue
 		}
