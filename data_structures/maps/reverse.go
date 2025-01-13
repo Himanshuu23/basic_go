@@ -21,4 +21,5 @@ func reverse(Map map[string]int) {
 	}
 
 	fmt.Println(reversed)
+	fmt.Println("the order of the maps does not depends on insertion and it is completely random - so we can just change the printing order and achieve the same")
 }
