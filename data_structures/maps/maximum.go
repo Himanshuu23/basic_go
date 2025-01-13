@@ -15,11 +15,13 @@ func main() {
 
 func maximum(Map map[string]int) {
 	var maximum string
-	val := -1e9
+	val := -1 << 63
 
 	for key := range Map {
 		if Map[key] > val {
 			maximum = key
+		} else {
+			continue
 		}
 	}
 
