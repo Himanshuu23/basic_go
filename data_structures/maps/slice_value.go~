@@ -6,9 +6,7 @@ import (
 )
 
 func main() {
-	Map := map[string][]string
-	Map["Electrical Engineering"] = ["A", "B", "C", "D"]
-	Map["Computer Science Engineering"] = ["X", "Y", "Z"]
+	Map := map[string][]string{ "Electrical Engineering": {"A", "B", "C", "D"}, "Computer Science Engineering": {"X", "Y", "Z"} }
 
 	add("someone", "Computer Science Engineering", Map)
 	Delete("C", "Electrical Engineering", Map)
@@ -26,5 +24,5 @@ func Delete(employee string, key string, Map map[string][]string) {
 
 	Map[key] = employees
 
-	fmt.Prinln(Map)
+	fmt.Println(Map)
 }
