@@ -1,0 +1,28 @@
+package main
+
+import "fmt"
+
+func main() {
+	var row, col int
+
+	fmt.Println("Enter the number of rows")
+	fmt.Scanln(&row)
+	fmt.Println("Enter the number of columns")
+	fmt.Scanln(&col)
+	
+	Map := make(map[[2]int]int)
+	Array := make([][]int, row)
+
+
+	for i := range row {
+		for j := range col {
+			Array[i] := make([]int, col)
+			fmt.Scanln(&Array[i][j])
+			if Array[i][j] != 0 {
+				Map[[2]int{ i, j }] = Array[i][j]
+			}
+		}
+	}
+
+	fmt.Println(Array, Map)
+}
