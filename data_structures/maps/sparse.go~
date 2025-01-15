@@ -11,12 +11,17 @@ func main() {
 	fmt.Scanln(&col)
 	
 	Map := make(map[[2]int]int)
-	Array := make([][]int, row)
-
+	Array := make([][]inti, row)
 
 	for i := range row {
+		Array[i] = make([]int, col)
 		for j := range col {
-			Array[i] := make([]int, col)
+			Array[i][j] = 0
+		}
+	}
+
+	for i := 0; i < row; i++ {
+		for j := 0; j < col; j++ {
 			fmt.Scanln(&Array[i][j])
 			if Array[i][j] != 0 {
 				Map[[2]int{ i, j }] = Array[i][j]
