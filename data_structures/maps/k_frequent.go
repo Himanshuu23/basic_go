@@ -42,6 +42,7 @@ func biggest(Map map[string]int) (map[string]int, string) {
 	for key, val := range Map {
 		if val > value {
 			word = key
+			value = val
 		}
 	}
 

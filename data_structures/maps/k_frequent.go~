@@ -31,7 +31,7 @@ func kfrequent(words []string, k int) {
 		word := ""
 		Map, word = biggest(Map)
 		result = append(result, word)
-	
+	}
 
 	fmt.Print(result)
 }
