@@ -1,0 +1,24 @@
+package main
+
+import "fmt"
+
+struct TrieNode {
+	wordEnd bool
+	child [26]*TrieNode
+}
+
+func (t *TrieNode) children() {
+	t.wordEnd = false
+
+	for i := range 26 {
+		t.child[i]= nil
+	}
+}
+
+func main() {}
+
+func insert(word string, Map map[TrieNode][]TrieNode) {
+	for _, char := range word {
+		if Map[char]
+	}
+}
