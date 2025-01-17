@@ -1,0 +1,10 @@
+package main
+
+import "fmt"
+
+func main() {
+	var number int = 2
+	var ptr1 *int = &number
+	var ptr2 **int = &ptr1
+	fmt.Println(number, ptr1, ptr2)
+}
