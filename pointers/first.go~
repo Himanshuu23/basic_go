@@ -4,6 +4,6 @@ import "fmt"
 
 func main() {
 	var number int = 3
-	var ptr int* = &number
-	fmt.Println(number, ptr)
+	ptr := &number
+	fmt.Println(number, ptr, *ptr)
 }
