@@ -1,0 +1,13 @@
+package main
+
+import "fmt"
+
+func main() {
+	Array := []int{1, 2, 3, 4, 5, 6, 7}
+	var ptr *int
+
+	for i := range Array {
+		ptr = &Array[i]
+		fmt.Println(*ptr)
+	}
+}
