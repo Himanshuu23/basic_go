@@ -1,0 +1,30 @@
+package main
+
+import "fmt"
+
+type LinkedList struct {
+	value		int
+	next		*LinkedList
+}
+
+func Createnode(value int) *LinkedList {
+	return &LinkedList{ value: value, next: nil}
+}
+
+func Traverse(ll *LinkedList) {
+	for ll != nil {
+		fmt.Println(ll.value)
+		ll = *ll.next
+	}
+}
+
+func main() {
+	root := Createnode(1)
+	node2 := Createnode(2)
+	node3 := Createnode(3)
+
+	root.next = node2
+	node2.next = node3
+
+	Traverse(root)
+}
