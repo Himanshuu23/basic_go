@@ -17,8 +17,8 @@ func main() {
 
 func Transpose(Array *[][]int) {
 	for i := range *Array {
-		for j := range *Array {
-			(*Array)[j][i], (*Array)[i][j] = (*Array)[i][j], (*Array)[j][i]		
+		for j := i + 1; j < len((*Array)[i]); j++ {
+			(*Array)[i][j], (*Array)[j][i] = (*Array)[j][i], (*Array)[i][j]		
 		}
 	}
 }
