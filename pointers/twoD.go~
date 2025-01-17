@@ -1,0 +1,24 @@
+package main
+
+import "fmt"
+
+func main() {
+	Array := [][]int{
+		{1, 2, 3},
+		{4, 5, 6},
+		{7, 8, 9},
+	}
+
+	fmt.Println(Array)
+
+	Transpose(Array)
+	fmt.Println(Array)
+}
+
+func Transpose(Array *[][]int) {
+	for i := range *Array {
+		for j := range *Array {
+			(*Array)[j][i], (*Array)[i][j] = (*Array)[i][j], (*Array)[j][i]		
+		}
+	}
+}
