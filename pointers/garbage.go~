@@ -1,0 +1,14 @@
+package main
+
+import (
+	"fmt"
+	"runtime"
+)
+func main() {
+	a := 4
+	ptr := &a
+	fmt.Println(ptr, *ptr, a)
+	ptr = nil
+	runtime.GC()
+	fmt.Println(ptr, ptr, a)
+}
