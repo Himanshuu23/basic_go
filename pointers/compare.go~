@@ -12,11 +12,12 @@ func main() {
 	p2 := Person{"something", 24}
 
 	areEqual := compare(&p1, &p2)
-	fmt.Println(areEqual)
+	areSame := compare(&p1, &p2)
+	fmt.Println(areEqual, areSame)
 }
 
 func compare(struct1, struct2 *Person) bool {
-	if (*struct1.name === *struct2.name) && (*struct1.age === *struct2.age) {
+	if ((*struct1).name == (*struct2).name) && (struct1.age == struct2.age) {
 		return true
 	} else {
 		return false
