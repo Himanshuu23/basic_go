@@ -1,0 +1,25 @@
+package main
+
+import "fmt"
+
+type Person struct {
+	name	string
+	age	int
+}
+
+func main() {
+	p1 := Person{"someone", 23}
+	p2 := Person{"something", 24}
+
+	areEqual := compare(&p1, &p2)
+	areSame := compare(&p1, &p2)
+	fmt.Println(areEqual, areSame)
+}
+
+func compare(struct1, struct2 *Person) bool {
+	if (*struct1.name === *struct2.name) && (*struct1.age === *struct2.age) {
+		return true
+	} else {
+		return false
+	}
+}
