@@ -22,6 +22,8 @@ func Delete(value int, head *Node) {
 			(*back).next = front
 			(*front).prev = back
 			break
+		} else {
+			curr = curr.next
 		}
 	}
 }
@@ -29,7 +31,7 @@ func Delete(value int, head *Node) {
 func Traverse(head *Node) {
 	curr := head
 	for {
-		fmt.Println((*curr).(*prev).value, "<-", (*curr).value, "->", (*curr).(*next).value)
+		fmt.Println(curr.prev.value, "<-", curr.value, "->", curr.next.value)
 		curr = (*curr).next
 		if curr == head {
 			break
@@ -54,5 +56,10 @@ func main() {
 	(*Node4).prev = Node3
 
 	Traverse(Node1)
-	
+
+	Delete(2, Node1)
+
+	fmt.Println("\n")
+
+	Traverse(Node1)
 }
