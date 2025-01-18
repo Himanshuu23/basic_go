@@ -8,6 +8,22 @@ type Car struct {
 }
 
 func main() {
-	A := {"a", "2020"}
+	A := Car{"a", "2020"}
 	fmt.Println(A)
+	A.model = "b"
+	fmt.Println(A)
+	Print(A)
+	newCar := struct {
+		model string
+		year  string
+	}{
+		model "something",
+		year  "something-else"
+	}
+
+	Print(newCar)
+}
+
+func Print(car Car) {
+	fmt.Println(car.model, car.year)
 }
