@@ -52,6 +52,14 @@ func (r *Rectangle) Area() int {
 	return r.length * r.width
 }
 
+func (r Rectangle) Display() {
+	fmt.Println(r.length, r.width)
+}
+
+func (c Circle) Display() {
+	fmt.Println(c.radius)
+}
+
 func main() {
 	r := NewRectangle(2, 3)
 	fmt.Println(r.Area())
@@ -63,4 +71,7 @@ func main() {
 	a.PrintSound()
 	Perimeter(*r)
 	Perimeter(c)
+
+	r.Display()
+	c.Display()
 }

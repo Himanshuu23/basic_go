@@ -28,8 +28,8 @@ func (a Animal) PrintSound() {
 	fmt.Println(a.sound)
 }
 
-func (r Rectangle) Perimeter() int {
-	return 2 * (r.length + r.width)
+func (r Rectangle) Perimeter() float64 {
+	return float64(2 * (r.length + r.width))
 }
 
 func (c Circle) Perimeter() float64 {
