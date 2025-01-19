@@ -1,0 +1,37 @@
+package main
+
+import "fmt"
+
+type Factory interface {
+	CreateProduct(name string)	string
+}
+
+type Car struct {
+	product 	string
+}
+
+type Bike struct {
+	product 	string
+}
+
+func (c *Car) CreateProduct(name string) string {
+	c.product = name
+	return c.product
+}
+
+func (b *Bike) CreateProduct(name string) string {
+	b.product = name
+	return b.product
+}
+
+func CreateProduct(f Factory, name string) {
+	fmt.Println(f.CreateProduct(name))
+}
+
+func main() {
+	c := Car{}
+	CreateProduct(&c, "car one")
+
+	b:= Bike{}
+	CreateProduct(&b, "bike one")
+}
