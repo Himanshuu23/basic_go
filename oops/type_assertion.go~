@@ -1,0 +1,21 @@
+package main
+
+import "fmt"
+
+func main() {
+	var value interface{}
+
+	value = 1
+	fmt.Println(value.(int))
+
+	value = "gello world"
+	fmt.Println(value.(string))
+
+	result, test := value.(int)
+
+	if result != nil {
+		fmt.Println(result)
+	} else {
+		fmt.Println("Not a int but a string value inside it")
+	}
+}
