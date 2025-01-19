@@ -12,7 +12,7 @@ type Movable interface {
 
 type Car struct {
 	side 		int
-	canMove		false
+	canMove		bool
 }
 
 func (c Car) Area() int {
@@ -32,7 +32,7 @@ func Move(m Movable) {
 }
 
 func main() {
-	c := Car{2}
+	c := Car{2, false}
 	Area(c)
 	Movable(c)
 }

@@ -34,5 +34,5 @@ func Move(m Movable) {
 func main() {
 	c := Car{2, false}
 	Area(c)
-	Movable(c)
+	Move(c)
 }
