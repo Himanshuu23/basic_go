@@ -2,15 +2,28 @@ package main
 
 import "fmt"
 
+type Animal struct {
+	sound	string
+}
+
+type Dog struct {
+	name	string
+	Animal
+}
+
 type Rectangle struct {
 	length		int
 	width		int
 }
 
+func (a Animal) PrintSound() {
+	fmt.Println(a.sound)
+}
+
 func NewRectangle(length, width int) *Rectangle {
 	return &Rectangle{
 		length: length,
-		width:  width
+		width:  width,
 	}
 }
 
@@ -22,4 +35,8 @@ func (r *Rectangle) Area() int {
 func main() {
 	r := NewRectangle(2, 3)
 	fmt.Println(r.Area())
+
+	a := Dog{"Shanky", Animal: Animal{"bark"}
+
+	a.PrintSound()
 }
