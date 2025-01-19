@@ -2,6 +2,14 @@ package main
 
 import "fmt"
 
+type Shape interface {
+	Perimeter()	float64
+}
+
+type Circle struct {
+	radius 	float64
+}
+
 type Animal struct {
 	sound	string
 }
@@ -20,6 +28,18 @@ func (a Animal) PrintSound() {
 	fmt.Println(a.sound)
 }
 
+func (r Rectangle) Perimeter() float64 {
+	return float64(2 * (r.length + r.width))
+}
+
+func (c Circle) Perimeter() float64 {
+	return 3.14 * c.radius * c.radius
+}
+
+func Perimeter(s Shape) {
+	fmt.Println(s.Perimeter())
+}
+
 func NewRectangle(length, width int) *Rectangle {
 	return &Rectangle{
 		length: length,
@@ -36,7 +56,11 @@ func main() {
 	r := NewRectangle(2, 3)
 	fmt.Println(r.Area())
 
+	c := Circle{2}
+
 	a := Dog{name: "Shanky", Animal: Animal{sound: "bark"}}
 
 	a.PrintSound()
+	Perimeter(*r)
+	Perimeter(c)
 }
