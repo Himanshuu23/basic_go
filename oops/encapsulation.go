@@ -2,22 +2,25 @@ package main
 
 import "fmt"
 
-type BankAccount struct {
+type bankAccount struct {
 	balance 	float64
 }
 
-func (b *BankAccount) SetBalance(value float64) {
+func (b *bankAccount) SetBalance(value float64) {
 	(*b).balance = value
 }
 
-func (b *BankAccount) GetBalance() float64 {
+func (b *bankAccount) GetBalance() float64 {
 	return b.balance
 }
 
 func main() {
-	b := BankAccount{2}
+	b := bankAccount{2}
 	fmt.Println(b.GetBalance())
 
 	b.SetBalance(200)
+	fmt.Println(b.GetBalance())
+
+	b.balance = 300
 	fmt.Println(b.GetBalance())
 }
