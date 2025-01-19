@@ -10,7 +10,7 @@ type Rectangle struct {
 func NewRectangle(length, width int) *Rectangle {
 	return &Rectangle{
 		length: length,
-		width:  width,
+		width:  width
 	}
 }
 
