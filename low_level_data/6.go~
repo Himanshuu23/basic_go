@@ -1,0 +1,22 @@
+package main
+
+import (
+	"fmt"
+	"encoding/json"
+)
+
+type Person struct {
+	Name		string		`json:"name"`
+	Age		int		`json:"age"`
+}
+
+func main() {
+	json := `{"name": "something", "age": 32}`
+	p := Person{"something", 32}
+	var result map[string]any
+	json.Marshal([]byte(json), &result)
+	fmt.Println(result)
+	fmt.Println(json.MarshalIndent(p))
+	fmt.Println(json.Marshal(map[string]int{"one": 1, "two": 2}))
+	fmt.Println(json.Unmarshal(json))
+}
