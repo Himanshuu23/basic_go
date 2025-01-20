@@ -11,12 +11,13 @@ type Person struct {
 }
 
 func main() {
-	json := `{"name": "something", "age": 32}`
+	jsonStr := `{"name": "something", "age": 32}`
 	p := Person{"something", 32}
 	var result map[string]any
-	json.Marshal([]byte(json), &result)
-	fmt.Println(result)
-	fmt.Println(json.MarshalIndent(p))
-	fmt.Println(json.Marshal(map[string]int{"one": 1, "two": 2}))
-	fmt.Println(json.Unmarshal(json))
+	result1, _ := json.Marshal([]byte(jsonStr))
+	result2, _ := json.MarshalIndent(p, "", " ")
+	result3, _ := json.Marshal(map[string]int{"one": 1, "two": 2})
+	json.Unmarshal([]byte(jsonStr), &result)
+
+	fmt.Println(result, result1, result2, result3)
 }
