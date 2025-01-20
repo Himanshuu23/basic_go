@@ -1,0 +1,46 @@
+package main
+
+import "fmt"
+
+type Payment interface {
+	Pay(amount int)
+	Refund(amount int)
+}
+
+type CreditCard struct {}
+
+func (c CreditCard) Pay(amount int) {
+	fmt.Println("paid an amount using credit card", amount)
+}
+
+func (c CreditCard) Refund(amount int) {
+	fmt.Println("refunded an amount using credit card", amount)
+}
+
+type PayPal struct {}
+
+func (p PayPal) Pay(amount int) {
+	fmt.Println("paid an amount using paypal", amount)
+}
+
+func (p PayPal) Refund(amount int) {
+	fmt.Println("paid an amount using paypal", amount)
+}
+
+func DoPayment(p Payment, amount int, process string) {
+	if process == "pay" {
+		p.Pay(amount)
+	} else if process == "refund" {
+		p.Refund(amount)
+	} else {
+		fmt.Println("Invalid")
+	}
+}
+
+func main() {
+	pp := PayPal{}
+	cc := CreditCard{}
+
+	DoPayment(pp, 2000, "pay")
+	DoPayment(cc, 4000, "refund")
+}
