@@ -9,13 +9,13 @@ type Logger struct {
 var LoggerInstance *Logger
 
 func GetFirstInstance(data string) *Logger {
-	if LoggerInstance == nil {
-		fmt.Print("about to return the first instance...")
-		return &Logger{Data: data}
-	} else {
+	if LoggerInstance != nil {
 		fmt.Print("already exists")
 		return nil
 	}
+
+	fmt.Print("about to return the first instance...")
+	return &Logger{Data: data}
 }
 
 func main() {

@@ -15,7 +15,8 @@ func GetFirstInstance(data string) *Logger {
 	}
 
 	fmt.Print("about to return the first instance...")
-	return &Logger{Data: data}
+	LoggerInstance = &Logger{Data: data}
+	return LoggerInstance
 }
 
 func main() {
