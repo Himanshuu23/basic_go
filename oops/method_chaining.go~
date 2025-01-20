@@ -1,0 +1,32 @@
+package main
+
+import "fmt"
+
+type Car struct {
+	Make		string
+	Model		string
+	Year		int
+}
+
+func (c *Car) SetMake(value string) *Car {
+	(*c).Make = value
+	return c
+}
+
+func (c *Car) SetModel(value string) *Car {
+	(*c).Model = value
+	return c
+}
+
+func (c *Car) SetYear(value int) *Car {
+	(*c).Year = value
+	return c
+}
+
+func main() {
+	c := Car{}
+
+	c.SetMake("Tesla").SetModel("Model X").setYear(2022)
+
+	fmt.Println(c)
+}
