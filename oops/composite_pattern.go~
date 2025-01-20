@@ -7,18 +7,18 @@ type Component interface {
 }
 
 type Folder struct {
-	name		string
-	children	[]Component
+	Name		string
+	Children	[]Component
 }
 
 type File struct {
-	name		string
+	Name		string
 }
 
-func (f Folder) Print() string {
+func (f Folder) Print() {
 	fmt.Println(f.Name)
-	for _, child := range f.children {
-		fmt.Print(child)
+	for _, child := range f.Children {
+		fmt.Println(child)
 	}
 }
 
@@ -32,8 +32,8 @@ func main() {
 	file3 := File{"file3"}
 	
 	folder1 := Folder{
-		name:		"Folder 1",
-		children:	[]Component{file1, file2, file3},
+		Name:		"Folder 1",
+		Children:	[]Component{file1, file2, file3}
 	}
 
 	Print(folder1)
