@@ -1,0 +1,40 @@
+package main
+
+import "fmt"
+
+type Component interface {
+	Print()
+}
+
+type Folder struct {
+	name		string
+	children	[]Component
+}
+
+type File struct {
+	name		string
+}
+
+func (f Folder) Print() string {
+	fmt.Println(f.Name)
+	for _, child := range f.children {
+		fmt.Print(child)
+	}
+}
+
+func Print(c Component) {
+	c.Print()
+}
+
+func main() {
+	file1 := File{"file1"}
+	file2 := File{"file2"}
+	file3 := File{"file3"}
+	
+	folder1 := Folder{
+		name:		"Folder 1",
+		children:	[]Component{file1, file2, file3},
+	}
+
+	Print(folder1)
+}
