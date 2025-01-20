@@ -18,8 +18,12 @@ type File struct {
 func (f Folder) Print() {
 	fmt.Println(f.Name)
 	for _, child := range f.Children {
-		fmt.Println(child)
+		child.Print()
 	}
+}
+
+func (f File) Print() {
+	fmt.Println(f.Name)
 }
 
 func Print(c Component) {
@@ -33,8 +37,13 @@ func main() {
 	
 	folder1 := Folder{
 		Name:		"Folder 1",
-		Children:	[]Component{file1, file2, file3}
+		Children:	[]Component{file1, file2, file3},
 	}
 
-	Print(folder1)
+	folder2 := Folder{
+		Name: 		"Parent Folder",
+		Children:	[]Component{folder1},
+	}
+	
+	Print(folder2)
 }
