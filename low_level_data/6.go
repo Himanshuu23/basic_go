@@ -15,11 +15,11 @@ func main() {
 	var result Person
 
 	Json := []byte(`{"name":"name", "age":29}`)
-	jsonData, err := json.Marshal(person)
-	jsonData2, err := json.MarshalIndent(person, "", " ")
-	erro := json.Unmarshal(Json, &result)
+	jsonData, _ := json.Marshal(person)
+	jsonData2, _ := json.MarshalIndent(person, "", " ")
+	err := json.Unmarshal(Json, &result)
 	if err != nil {
-		fmt.Println(err, erro)
+		fmt.Print(err)
 	}
-	fmt.Println(jsonData, jsonData2, result)
+	fmt.Println(string(jsonData), string(jsonData2), result)
 }
