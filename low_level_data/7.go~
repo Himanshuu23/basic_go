@@ -8,14 +8,24 @@ import (
 
 func main() {
 	data := map[string]int{"age":2, "month":2}
+	encodedData := []byte{}
 
 	var buf bytes.Buffer
+	newbuf := bytes.NewBuffer(encodedData)
 
 	enc := gob.NewEncoder(&buf)
+	dec := gob.NewDecoder(newbuf)
+	var decodedData map[string]int
 
 	if err := enc.Encode(data); err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Println(buf.Bytes())
+	if err := dec.Decode(&decodedData); err != nil {
+		fmt.Print(err)
+	}
+
+	fmt.Print(decodedData)
+
+	fmt.Println(string(buf.Bytes()))
 }
