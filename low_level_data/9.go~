@@ -1,0 +1,12 @@
+package main
+
+import (
+	"fmt"
+	"bytes"
+)
+
+func main() {
+	var buf bytes.Buffer
+
+	buf.Write([]byte("hello world"))
+	buf.Write(int
