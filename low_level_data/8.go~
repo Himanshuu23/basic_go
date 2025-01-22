@@ -11,7 +11,5 @@ func main() {
 	bytes := []byte(String)
 	hexStr := hex.EncodeToString(bytes)
 
-	str, _ := hex.DecodeString(hexStr)
-	fmt.Print(hexStr, string(str))
-	
+	fmt.Print(hexStr)
 }
