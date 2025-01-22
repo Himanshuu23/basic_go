@@ -3,14 +3,19 @@ package main
 import (
 	"fmt"
 	"bytes"
+	"encoding/binary"
 )
 
 func main() {
 	var buf bytes.Buffer
 
 	buf.Write([]byte("hello world"))
-	
+	binary.Write(&buf, binary.BigEndian, int32(5))
+
 	data := buf.String()
+	var readNum int32
+
+	binary.Read(&buf, binary.BigEndian, &readNum)
 
 	fmt.Print(data)
 }

@@ -9,4 +9,8 @@ func main() {
 	var buf bytes.Buffer
 
 	buf.Write([]byte("hello world"))
-	buf.Write(int
+	
+	data := buf.String()
+
+	fmt.Print(data)
+}
