@@ -17,5 +17,5 @@ func main() {
 		fmt.Println(err)
 	}
 
-	fmt.Println(string(buf.Bytes()))
+	fmt.Println(buf.Bytes())
 }
