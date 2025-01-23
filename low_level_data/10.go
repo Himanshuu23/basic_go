@@ -18,5 +18,4 @@ func toggleBit(num, pos int) int {
 
 func main() {
 	// fix the things a bit there r bugs regarding the logical bitwise ops
-	
 }
