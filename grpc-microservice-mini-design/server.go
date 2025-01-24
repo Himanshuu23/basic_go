@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	pb ""
+	pb "./example"
 
 	"google.golang.org/grpc"
 )
