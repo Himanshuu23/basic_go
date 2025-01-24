@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package example;
 
-option go_package = "github.com/Himanshuu23/basic_go/grpc-microservice-mini-design;example";
-
 service Greeter {
 	rpc SayHello (HelloRequest) returns (HelloReply);
 }
