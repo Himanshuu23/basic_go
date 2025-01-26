@@ -26,14 +26,22 @@ func main() {
 
 	fmt.Println("Binary data: ", buf.Bytes())
 
-	buf := bytes.NewReader(buf.Bytes())
+	buffReader := bytes.NewReader(buf.Bytes())
 	var q Person
 
-	if err := buf.Read(&q.Name); err != nil {
+	var nameLen int
+	if err := binary.Read(buffReader, binary.BigEndian, &nameLen); err != nil {
 		fmt.Println(err)
 	}
 
-	if err := binary.Read(buf, binary.BigEndian, &q.Age); err != nil {
+	nameBytes := make([]byte, nameLen)
+	if err := binary.Read(buffReader, binary.BigEndian, &nameBytes); err != nil {
+		fmt.Println(err)
+	}
+
+	q.Name = string(nameBytes)
+
+	if err := binary.Read(buffReader, binary.BigEndian, &q.Age); err != nil {
 		fmt.Println(err)
 	}
 
