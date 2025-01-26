@@ -24,10 +24,12 @@ func main() {
 		fmt.Println(err)
 	}
 	
+	encoded := buf.Bytes()
+
 	if err := decoder.Decode(&decoded); err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Println(buf.Bytes())
+	fmt.Println(encoded)
 	fmt.Println(decoded)
 }
