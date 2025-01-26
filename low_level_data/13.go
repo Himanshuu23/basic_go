@@ -1,14 +1,19 @@
 package main
 
 import (
+	"bytes"
 	"encoding/binary"
 	"fmt"
 )
 
 func main() {
-	var a int32 = 2
+	num := int32(4)
 
-	big := binary.LittleEndian.Uint32(a)
-	small := binary.BigEndian.Uint32(a)
+	bigEndian := new(bytes.Buffer)
+	binary.Write(bigEndian, binary.BigEndian, num)
+	fmt.Printf("Big Endian: %v\n", bigEndian.Bytes())
 
-	fmt.Print(big, small)
+	littleEndian := new(bytes.Buffer)
+	binary.Write(littleEndian, binary.LittleEndian, num)
+	fmt.Printf("Little Endian: %v\n", littleEndian.Bytes())
+}
