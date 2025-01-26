@@ -7,7 +7,7 @@ import (
 )
 
 type Employee struct {
-	ID	int
+	ID	int32
 	Salary	float64
 }
 
@@ -15,14 +15,14 @@ func serialize(emp Employee) ([]byte, error) {
 	buf := new(bytes.Buffer)
 
 	if err := binary.Write(buf, binary.BigEndian, emp.ID); err != nil {
-		return emp, err
-	)
+		return buf.Bytes(), err
+	}
 
 	if err := binary.Write(buf, binary.BigEndian, emp.Salary); err != nil {
-		return emp, err
-	)
+		return buf.Bytes(), err
+	}
 	
-	return emp, err
+	return buf.Bytes(), err
 }
 
 func deserialize(data []byte) (emp Employee, error) {
@@ -57,5 +57,5 @@ func main() {
 		fmt.Println("Deserialization error: ", err)
 	}
 
-	fmt.Println("Deserialized error: ", deserializedData)
+	fmt.Println("Deserialized Data: ", deserializedData)
 }
