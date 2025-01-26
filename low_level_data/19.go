@@ -7,8 +7,8 @@ import (
 )
 
 type Person struct {
-	Name		string
-	Age 		int64
+	Name string
+	Age  int64
 }
 
 func main() {
@@ -16,25 +16,30 @@ func main() {
 
 	buf := new(bytes.Buffer)
 
-	if err := buf.Write([]byte(p.Name)); err != nil {
+	nameLen := int32(len(p.Name))
+	if err := binary.Write(buf, binary.BigEndian, nameLen); err != nil {
 		fmt.Println(err)
 	}
-	
+
+	if err := binary.Write(buf, binary.BigEndian, []byte(p.Name)); err != nil {
+		fmt.Println(err)
+	}
+
 	if err := binary.Write(buf, binary.BigEndian, p.Age); err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Println("Binary data: ", buf.Bytes())
+	fmt.Println("Binary data:", buf.Bytes())
 
 	buffReader := bytes.NewReader(buf.Bytes())
 	var q Person
 
-	var nameLen int
-	if err := binary.Read(buffReader, binary.BigEndian, &nameLen); err != nil {
+	var nameLenRead int32
+	if err := binary.Read(buffReader, binary.BigEndian, &nameLenRead); err != nil {
 		fmt.Println(err)
 	}
 
-	nameBytes := make([]byte, nameLen)
+	nameBytes := make([]byte, nameLenRead)
 	if err := binary.Read(buffReader, binary.BigEndian, &nameBytes); err != nil {
 		fmt.Println(err)
 	}
