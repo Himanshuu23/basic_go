@@ -11,6 +11,6 @@ func main() {
 	encoded := base64.StdEncoding.EncodeToString(data)
 	fmt.Println(encoded)
 
-	decoded := base64.StdEncoding.DeocdeToString(encoded)
+	decoded := base64.StdEncoding.DecodeString(encoded)
 	fmt.Println(decoded)
 }
