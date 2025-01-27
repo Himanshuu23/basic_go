@@ -28,9 +28,9 @@ func main(){
 }
 
 func worker(fanin <-chan int, fanout chan<- int, wg *sync.WaitGroup){
+	defer wg.Done()
 	for i := range fanin {
 		fanout <- square(i)
-		wg.Done()
 	}
 }
 
