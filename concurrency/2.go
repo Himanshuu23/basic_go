@@ -11,7 +11,7 @@ func getGoroutineId() {
 
 	n := runtime.Stack(buf[:], false)
 	id := 0
-	fmt.Sscanf(string(buf[:]), "goroutine %d", &id)
+	fmt.Sscanf(string(buf[:n]), "goroutine %d", &id)
 	fmt.Println(id)
 }
 
