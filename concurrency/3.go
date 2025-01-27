@@ -2,27 +2,27 @@ package main
 
 import (
 	"fmt"
-	"sync"
 )
 
 func main() {
-	buf := make(chan int)
-	unbuf := make(chan int, 3)
+	unbuf := make(chan int)
+    buf := make(chan int, 3)
 
-	unbuf <- 1
-	unbuf <- 2
-	unbuf <- 3
+	buf <- 1
+	buf <- 2
+	buf <- 3
 
 	go func() {
-		buf<-33	
+		unbuf<-33	
 	}()
 
 	go func() {
-		ch <- 4
+		buf <- 4
 	}()
 
+	fmt.Println(<-unbuf)
 	fmt.Println(<-buf)
-	fmt.Println(<-unbuf)
-	fmt.Println(<-unbuf)
-	fmt.Println(<-unbuf)
+	fmt.Println(<-buf)
+	fmt.Println(<-buf)
+	fmt.Println(<-buf)
 }
