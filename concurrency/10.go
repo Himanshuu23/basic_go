@@ -14,7 +14,7 @@ var (
 func readData(id int) {
 	defer wg.Done()
 	mutex.RLock()
-	fmt.Printf("Data: ", data, id)
+	fmt.Printf("Data: %d, Reader: %d\n", data, id)
 	mutex.RUnlock()
 }
 
@@ -22,7 +22,7 @@ func writeData(value int) {
 	defer wg.Done()
 	mutex.Lock()
 	data = value
-	fmt.Printf("Updated Data: ", value)
+	fmt.Printf("Updated Data: %d\n", value)
 	mutex.Unlock()
 }
 
