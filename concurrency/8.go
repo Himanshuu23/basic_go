@@ -13,8 +13,14 @@ func main(){
     go send(ch2, "message to the channel 2", 2)
 
     for i := 1; i <=15; i++ {
-        fmt.Println(<-ch1)
-        fmt.Println(<-ch2)
+        select {
+            case x := <-ch1: {
+                fmt.Println(x)
+            }
+            case y := <-ch2: {
+                fmt.Println(y)
+            }
+        }
     }
 }
 
