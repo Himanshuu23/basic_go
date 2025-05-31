@@ -31,3 +31,49 @@ In this problem:
 Higher k ⇒ fewer hours needed (monotonic), so binary search fits.
 
 */
+
+package main
+import "fmt"
+
+func main() {    
+    piles := []int{3, 6, 7, 11}
+    h := 8
+
+    fmt.Println(minEatingSpeed(piles, h))
+}
+
+func maxPile(array []int) int {
+    max := 0
+
+    for i := range array {
+        if (array[i] > max) {
+            max = array[i]
+        }
+    }
+
+    return max
+}
+
+func minEatingSpeed(piles []int, h int) int {
+    start := 1
+    end := maxPile(piles)
+    result := end
+
+    for start <= end {
+        mid := (start + end) / 2
+        hours := 0
+
+        for hour := range piles {
+            hours += ((piles[hour] + mid - 1) / mid)
+        }
+
+        if (hours > h) {
+            start = mid + 1
+        } else {
+            result = mid
+            end = mid - 1
+        }
+    }
+
+    return result
+}
