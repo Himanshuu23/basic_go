@@ -23,14 +23,18 @@ package main
 import "fmt"
 
 func main() {
-    array := []int{1, 2, 1, 3, 5, 6, 4}
+    array := []int{1, 2, 3, 1}
     fmt.Println(peakElement(array))
 }
 
 func peakElement(array []int) int {
     start, end := 1, len(array) - 1 // since first & last elements can never be the required solution so excluding them in the search
 
-    for start > end {
+    if len(array) == 1 {
+        return 0
+    }
+
+    for start <= end {
         mid := (start + end) / 2
 
         if ((array[mid] > array[mid+1]) && (array[mid-1] < array[mid])) {
