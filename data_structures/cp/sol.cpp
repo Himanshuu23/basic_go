@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int INT_MAX_VAL = INT_MAX;
-const int INT_MIN_VAL = INT_MIN;
-
 #define fastio ios::sync_with_stdio(false); cin.tie(nullptr);
 #define endl "\n"
 #define all(x) (x).begin(), (x).end()
@@ -19,8 +16,6 @@ typedef vector<ll> vll;
 
 int main() {
     fastio;
-
-    // Your code starts here
 
     return 0;
 }
