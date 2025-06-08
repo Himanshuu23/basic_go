@@ -1,47 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int ToDecimal(int n, int k) { // k = 2 for binary, 8 for octal
-    int ans = 0, x = 1, y;
+int baseToDecimal(const string& number, int base) {
+    int decimal = 0;
+    int power = 1; 
 
-    while (n > 0) {
-        y = n % 10;
-        ans += x * y;
-        x *= k;
-        n /= 10;
-    }
+    for (int i = number.length() - 1; i >= 0; --i) {
+        char digitChar = toupper(number[i]);
+        int digit;
 
-    return ans;
-}
-
-int hexaDecimalToDecimal(string n) {
-    int ans = 0, x = 1, s = n.size();
-
-    for (int i = s - 1; i >= 0; i--) {
-        if (n[i] >= '0' && n[i] <= '9') {
-            ans += x * (n[i] - '0');
-        } else if (n[i] >= 'A' && n[i] <= 'F') {
-            ans += x * (n[i] - 'A' + 10);
+        if (isdigit(digitChar)) {
+            digit = digitChar - '0';
+        } else if (digitChar >= 'A' && digitChar <= 'F') {
+            digit = digitChar - 'A' + 10;
+        } else {
+            throw invalid_argument("Invalid character in input number");
         }
 
-        x *= 16;
+        if (digit >= base) {
+            throw invalid_argument("Digit exceeds base");
+        }
+
+        decimal += digit * power;
+        power *= base;
     }
 
-
-    return ans;
+    return decimal;
 }
 
 int main() {
-
-    int n; cin >> n;
-    cin.ignore();
-    
     string s;
     getline(cin, s);
 
-    cout << ToDecimal(n, 2) << endl;
-    cout << ToDecimal(n, 8) << endl;
-    cout << hexaDecimalToDecimal(s) << endl;
+    cout << baseToDecimal(s, 2) << endl;
+    cout << baseToDecimal(s, 8) << endl;
+    cout << baseToDecimal(s, 16) << endl;
 
     return 0;
 }
