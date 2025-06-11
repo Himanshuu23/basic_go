@@ -18,28 +18,28 @@ int main() {
 
         vector<int> d;
 
-        for (int i = 0; i < n; i++) {
+        int i = 0;
+        for ( ; i < n; i++) {
             int temp = 0; cin >> temp;
             d.push_back(temp);
         }
 
-        int s = x;
-        for (int i = 0; i < n; i++) {
-            if (d[i] == 0 && s == x) {
-                continue;
-            } else if ((i == (n - 1)) && d[i] == 0) {
-                continue;
-            } else if (d[i] == 0 && s < x) {
-                s--;
-            } else if (d[i] == 1) {
-                s--;
-            }         
+        int cnt = 0;
+        i = 0;
+
+        while (i < n) {
+            if (d[i] == 1) {
+                cnt += 1;
+                i += x;
+            } else {
+                i++;
+            }
         }
 
-        if (s < 0) {
-            cout << "NO" << endl;
-        } else {
+        if (cnt <= 1) {
             cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
         }
     }
 
