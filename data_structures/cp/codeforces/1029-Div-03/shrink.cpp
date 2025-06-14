@@ -14,25 +14,22 @@ int main() {
 
     while(t--) {
         cin >> n;
-
         vector<int> v;
 
-        int left = 1, right = n;
         for (int i = 0; i < n; i++) {
-            if (i % 2 == 0) {
-                v[i] = right;
-                --right;
-            } else {
-                v[i] = left;
-                ++left;
-            }
+            v.push_back(i + 1);
         }
 
-        for (int i = 0; i < n; i++) {
-            cout << v[i] << " ";
+        for (int i = 1; i < n; i += 2) {
+            if ((i == (n - 1)) && (n % 2))
+                swap(v[n-1], v[n-2]);
+            else if (i != (n - 1))
+                swap(v[i], v[i+1]);
         }
+
+        for (auto it : v)
+            cout << it << " ";
         cout << endl;
     }
-
     return 0;
 }
