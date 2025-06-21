@@ -15,7 +15,7 @@ int main() {
         string s;
         getline(cin, s);
         if (s[0] != s.back()) s[0] = s.back();
-        cout << s << endl;
+        cout << s << "\n";
     }
 
     return 0;
