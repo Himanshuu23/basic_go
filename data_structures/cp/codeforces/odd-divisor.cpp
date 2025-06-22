@@ -12,20 +12,7 @@ int main() {
     long t; cin >> t;
     while(t--) {
         ll n, div; cin >> n; div = n / 2;
-        if (n & 1) cout << "Yes" << endl;
-        else {
-            bool ans = false;
-            while (div > 2) {
-                div /= 2;
-                if (div & 1) {
-                    if (n % div == 0) {
-                        ans = true;
-                        break;
-                    }
-                }
-            }
-            puts(ans ? "Yes" : "No");
-        }
+        puts(n & (n - 1) ? "Yes" : "No");
     }
 
     return 0;
