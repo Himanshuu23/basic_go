@@ -8,7 +8,10 @@ typedef long long ll;
 void substring(string s, int i) {
     if (i < 0) return;
     substring(s, i-1);
-    cout << s.substr(0, i) << endl;
+    cout << s[i] << endl;
+    for (int j = 0; j < i; j++) {
+        cout << s.substr(j, i - j + 1) << endl;
+    }
 }
 
 int main() {
