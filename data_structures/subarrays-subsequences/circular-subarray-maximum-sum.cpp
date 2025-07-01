@@ -3,28 +3,18 @@ using namespace std;
 
 int kadane(vector<int>& arr, int n) {
     int currSum = 0, maxSum = INT_MIN;
-
     for (int i = 0; i < n; i++) {
-        currSum += arr[i];
-
-        if (currSum < 0) {
-            currSum = 0;
-        }
-
+        currSum = max(arr[i], currSum + arr[i]);
         maxSum = max(maxSum, currSum);
     }
-
     return maxSum;
 }
 
 int main() {
     int n; cin >> n;
-    vector<int> arr;
+    vector<int> arr(n);
 
-    for (int i = 0; i < n; i++) {
-        int temp = 0; cin >> temp;
-        arr.push_back(temp);
-    }
+    for (int i = 0; i < n; i++) cin >> arr[i];
 
     int totalSum = 0, wrapSum, nonWrapSum = kadane(arr, n);
     
