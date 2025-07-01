@@ -23,7 +23,7 @@ int cumulative(vector<int>& arr, int n) { // O(n²)
 }
 
 int kadane(vector<int>& arr, int n) { // O(n)
-    int currSum = arr[0], maxSum = a[0];
+    int currSum = arr[0], maxSum = arr[0];
     
     for (int i = 1; i < n; i++) {
         currSum = max(arr[i], arr[i] + currSum);
@@ -35,12 +35,9 @@ int kadane(vector<int>& arr, int n) { // O(n)
 int main() {
     int n; cin >> n;
 
-    vector<int> v;
+    vector<int> v(n);
 
-    for (int i = 0; i < n; i++) {
-        int temp = 0; cin >> temp;
-        v.push_back(temp);
-    }
+    for (int i = 0; i < n; i++) cin >> v[i];
 
     cout << cumulative(v, n) << endl;
     cout << kadane(v, n) << endl;
