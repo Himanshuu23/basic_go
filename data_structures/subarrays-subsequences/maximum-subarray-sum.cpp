@@ -23,18 +23,12 @@ int cumulative(vector<int>& arr, int n) { // O(n²)
 }
 
 int kadane(vector<int>& arr, int n) { // O(n)
-    int currSum = 0, maxSum = INT_MIN;
+    int currSum = arr[0], maxSum = a[0];
     
-    for (int i = 0; i < n; i++) {
-        currSum += arr[i];
-
-        if (currSum < 0) {
-            currSum = 0;
-        }
-
+    for (int i = 1; i < n; i++) {
+        currSum = max(arr[i], arr[i] + currSum);
         maxSum = max(maxSum, currSum);
     }
-
     return maxSum;
 }
 
