@@ -4,7 +4,7 @@ using namespace std;
 void findUnique(int arr[], int n) {
     int xorSum = 0;
     for (int i = 0; i < n; i++) {
-        xorSum += arr[i];
+        xorSum ^= arr[i];
     }
 
     int setBit = xorSum & ~(xorSum - 1);
