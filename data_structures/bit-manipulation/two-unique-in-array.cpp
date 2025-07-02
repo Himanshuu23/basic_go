@@ -5,12 +5,12 @@ void findUnique(int arr[], int n) {
     int xorSum = 0;
     for (int i = 0; i < n; i++) {
         xorSum ^= arr[i];
-    }
+    } // the result would be just XOR of the two elements only
 
-    int setBit = xorSum & ~(xorSum - 1);
+    int setBit = xorSum & ~(xorSum - 1); // finding the element where these two differ by that bit
 
     int x = 0, y = 0;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) { // partitioning by that bit into two groups to find each unique number
         if (setBit & arr[i]) {
             x ^= arr[i];
         } else {
