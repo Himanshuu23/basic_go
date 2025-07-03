@@ -14,6 +14,15 @@ void substring(string s, int i) {
     }
 }
 
+void solve(string s, int start, int end) {
+    if (start == s.size()) return;
+    if (end == s.size() + 1) solve(s, start + 1, start + 1);
+    else {
+        cout << s.substr(start, end - start) << endl;
+        solve(s, start, end + 1);
+    }
+}
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
@@ -21,7 +30,8 @@ int main() {
     long t; cin >> t;
     while(t--) {
         string s; cin >> s;
-        substring(s, s.size());
+         substring(s, s.size());
+        solve(s, 0, 1);
     }
 
     return 0;
