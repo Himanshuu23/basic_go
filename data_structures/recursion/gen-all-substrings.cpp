@@ -30,7 +30,7 @@ int main() {
     long t; cin >> t;
     while(t--) {
         string s; cin >> s;
-         substring(s, s.size());
+        substring(s, s.size());
         solve(s, 0, 1);
     }
 
