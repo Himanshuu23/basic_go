@@ -46,6 +46,35 @@ node* solve(vector<node*> lists) {
     return dummy->next;
 }
 
+node* mergeTwoSorted(node* &h1, node* &h2) {
+    node* dummy = new node(0);
+    node* tail = dummy;
+
+    while (h1 && h2) {
+        if (h1->data < h2->data) {
+            tail->next = h1;
+            h1 = h1->next;
+        } else {
+            tail->next = h2;
+            h2 = h2->next;
+        }
+        tail = tail->next;
+    }
+
+    tail->next = h1 ? h1 : h2;
+    return dummy->next;
+}
+
+node* mergeKList(vector<node*>& lists, int left, int right) {
+    if (left > right) return NULL;
+    if (left == right) return lists[left];
+
+    int mid = (left + right) / 2;
+    node* l1 = mergeKList(lists, left, mid);
+    node* l2 = mergeKList(lists, mid + 1, right);
+    return mergeTwoSorted(l1, l2);
+}
+
 void display(node* head) {
     while (head) {
         cout << head->data << "->";
@@ -80,7 +109,9 @@ int main() {
         lists.push_back(head1);
     }
 
-    node* sol = solve(lists);
-    display(sol);
+    // node* sol = solve(lists);
+    node* sol2 = mergeKList(lists, 0, lists.size() - 1);
+    //display(sol);
+    display(sol2);
     return 0;
 }
