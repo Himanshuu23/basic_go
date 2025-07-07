@@ -21,30 +21,29 @@ node* reverseKGroup(node* head, int k) {
 
     node dummy(0);
     dummy.next = head;
-    node* prev_group_tail = &dummy;
+    node* prev = &dummy;
 
     while (true) {
-        node* kth = prev_group_tail;
-        for (int i = 0; i < k && kth; i++)
-            kth = kth->next;
+        node* curr = prev;
+        for (int i = 0; i < k && curr; ++i) curr = curr->next;
+        if (!curr) break;
 
-        if (!kth) break;
+        node* tail = prev->next;
+        node* next = curr->next;
 
-        node* group_start = prev_group_tail->next;
-        node* next_group_head = kth->next;
+        node* p = tail;
+        node* q = p->next;
 
-        node* prev = kth->next;
-        node* curr = group_start;
-
-        while (curr != next_group_head) {
-            node* temp = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = temp;
+        while (q != next) {
+            node* temp = q->next;
+            q->next = p;
+            p = q;
+            q = temp;
         }
 
-        prev_group_tail->next = kth;
-        prev_group_tail = group_start;
+        prev->next = curr;
+        tail->next = next;
+        prev = tail;
     }
 
     return dummy.next;
