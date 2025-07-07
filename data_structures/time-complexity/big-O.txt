@@ -1,0 +1,45 @@
+why we don't care about constant in time complexity?
+In time complexity analysis, constants are often ignored because they become insignificant when dealing with large input sizes. The primary focus is on the dominant term that determines how the algorithm's runtime grows as the input grows
+Asymptotic Behavior:
+Time complexity, often expressed using Big O notation, focuses on the asymptotic behavior of an algorithm. This means we're interested in how the runtime scales as the input size (n) approaches infinity
+
+why hash maps are so efficient and lookup is O(1) and not O(n)?
+First of all, if you use a specific predetermined hash function, then yes the worst-case runtime of a hashtable operation on a table containing n elements is O(n), because an adversary can find n keys that hash to the same location (called collisions), which will make the performance terrible. So it is correct to say that hashtable operations are O(n) worst-case time if your hash function is defined deterministically.
+So where can we get O(1) from that isn't nonsense? It comes from using randomization. A randomized algorithm makes use of random numbers / random bits to make decisions. So, for example, instead of defining our hash function to be h(x) = (68495 x + 6456456) mod 10000009 and hardcoding that into our algorithm / data structure, we can instead say pick a random prime number p, and pick two random integers a and b that are less than p, then define our hash function to be h(x) = (ax + b) mod p. (This is just one example construction, there are many many families of hash functions you could construct).
+
+O(1) - constant time
+examples - lookup on hashmap/hashset, arr[2], adding/removing an element from the end
+
+O(n) 
+summing 'n' integers, array.insert(1, 100), building heap from some list of values -> heapify -> by this we basically mean worst complexity
+- sometimes even nested loops can be O(n) -> example : monotonic stack, sliding window
+
+O(n²) 
+iterating a 2d array (grid or matrix), insertion sort -> inserting into middle of the array n times (since inserting into the middle of the array is n complexity & doing that "n" times)
+
+O(n*m)
+iterating matrix not always square can be n*m too when rows != cols
+
+O(n³)
+iterating through three nested loops
+
+O(logn)
+- on every iteration we eliminate half of the elements -> how many times can we cut n or divide into two to get "1" or inversely how many times can we multiply 1 by 2 to get n so that is 2^x = n -> take log on both sides! => x = logn
+binary search, binary search on binary search tree, push and pop on heap
+
+O(nlogn)
+it is much more efficient that n^2 just like logn is from n.
+merge sort, and most of the sorting builtin functions, heap sort -> first we heapify the array that is O(n) and then pop n elements from the heap that is nlogn => n + nlogn so overall nlogn but if it was m + nlogn then we cannot remove the m since we don't know if m is smaller than nlogn
+
+O(2^n)
+most commonly in recursions
+- recursion => tree height n  with two branches, fibonacci sequence recursively
+
+O(c^n) - we can have any constant for the same 
+- just the number of branch would be c
+
+O(sqrt(n))
+- get all factors of n -> since we go b/w 1 to sqrt(n) and get all the factors for the same
+
+O(n!)
+permutations, or some graph problems like travelling salesman problem
