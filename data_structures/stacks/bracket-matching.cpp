@@ -14,7 +14,7 @@ bool shallIPop(char c1, char c2) {
 }
 
 bool solve(string s) {
-    stack<int> stack;
+    stack<char> stack;
     for (auto &ch : s) {
         if (ch == '[' || ch == '{' || ch == '(') stack.push(ch);
         else if (!stack.empty() && shallIPop(stack.top(), ch)) stack.pop();
