@@ -26,7 +26,10 @@ int main() {
 
     long t; cin >> t;
     while(t--) {
-
+        int n; cin >> n;
+        vector<int>v(n);
+        for (int i = 0; i < n; i++) cin >> v[i];
+        cout << solve(v, n) << endl;
     }
 
     return 0;
