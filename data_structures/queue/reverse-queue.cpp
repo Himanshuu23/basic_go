@@ -17,6 +17,13 @@ void solve(queue<int>& q) {
     }
 }
 
+void another(queue<int>& q) {
+    if (q.empty()) return;
+    int front = q.front(); q.pop();
+    another(q);
+    q.push(front);
+}
+
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
