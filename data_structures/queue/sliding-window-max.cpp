@@ -10,10 +10,10 @@ vector<int> solve(vector<int>& v, int n, int k) {
     vector<int> res;
 
     for (int i = 0; i < n; i++) {
-        if (!dq.empty() && dq.front() <= i - k) dq.pop_front();
-        while (!dq.empty() && v[dq.back()] < v[i]) dq.pop_back();
+        if (!dq.empty() && dq.front() <= i - k) dq.pop_front(); // removing the indices outside the window
+        while (!dq.empty() && v[dq.back()] < v[i]) dq.pop_back(); // maintaining decreasing order in the deque keeping max at the front
         dq.push_back(i);
-        if (i >= k - 1) res.push_back(v[dq.front()]);
+        if (i >= k - 1) res.push_back(v[dq.front()]); // once a window is traversed then push its result -> max that is top of the queue to the answer
     } 
 
     return res;
