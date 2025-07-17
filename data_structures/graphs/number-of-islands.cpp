@@ -12,7 +12,7 @@ void dfs(int i, int j, vector<vector<char>>& grid, vector<vector<bool>>& visited
     vector<pair<int, int>> dirs = {{-1,0},{1,0},{0,-1},{0,1}};
     for (auto [dx, dy] : dirs) {
         int ni = i + dx, nj = j + dy;
-        if (ni >= 0 && nj >= 0 && ni < n && nj < m && grid[ni][nj] == '1' && !visited[ni][nj]) {
+        if (ni >= 0 && nj >= 0 && ni < n && nj < m && grid[ni][nj] == '1' && !visited[ni][nj]) { // moving to each neighbor - if not visited and is 1 and unvisited then doing dfs on it
             dfs(ni, nj, grid, visited);
         }
     }
