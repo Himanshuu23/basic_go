@@ -51,7 +51,7 @@ int main() {
             {15, 35, 0, 30},
             {20, 25, 30, 0}
         };
-        cout << tsp(4, dist) << endl;
+        cout << tsp(4, dist) << "\n";
     }
 
     return 0;
