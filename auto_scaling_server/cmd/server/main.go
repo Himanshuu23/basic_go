@@ -1,13 +1,23 @@
 package main
 
 import (
-    "time"
+	"os"
+	"time"
 
-    "autoscaling-server/internal/metrics"
-    "github.com/gin-gonic/gin"
+	"autoscaling-server/internal/autoscaler"
+	"autoscaling-server/internal/metrics"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
+    port := os.Getenv("PORT")
+    if port == "" {
+        port = "11011"
+    }
+
+    metrics.StartMetricsCollector()
+    autoscaler.MonitorAndScale()
+
     router := gin.Default()
     
     router.GET("/health", func(c *gin.Context) {
@@ -22,5 +32,5 @@ func main() {
         c.JSON(200, metrics.ServerMetrics)
     })
 
-    router.Run("localhost:11011")
+    router.Run("localhost:" + port)
 }
