@@ -52,7 +52,20 @@ func serverToRemove() int {
     return 0
 }
 
+func GetActiveServers() []string {
+    servers := []string{}
+    for port := range serverMap {
+        servers = append(servers, fmt.Sprintf("http://localhost:%d", port))
+    }
+
+    return servers
+}
+
 func MonitorAndScale() {
+    if len(serverMap) == 0 {
+        StartServer(11011)
+    }
+
     go func() {
         for {
             metrics := metrics.ServerMetrics

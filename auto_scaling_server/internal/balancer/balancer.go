@@ -1,34 +1,50 @@
 package balancer
 
 import (
-    "net/http"
-    "net/http/httputil"
-    "net/url"
-    "sync"
+	"fmt"
+	"net/http"
+	"net/http/httputil"
+	"net/url"
+	"sync"
+
+	"autoscaling-server/internal/autoscaler"
 )
 
 var (
-    servers     []string
-    next        int
-    mu          sync.Mutex
+	next int
+	mu   sync.Mutex
 )
 
-func Init(serverList []string) {
-    servers = serverList
-}
+func GetNextServer() string {
+	mu.Lock()
+	defer mu.Unlock()
 
-func getNextServer() string {
-    mu.Lock()
-    defer mu.Unlock()
-    server := servers[next%len(servers)]
-    next++
-    return server
+	activeServers := autoscaler.GetActiveServers()
+	if len(activeServers) == 0 {
+		return ""
+	}
+
+	server := activeServers[next%len(activeServers)]
+	next++
+	return server
 }
 
 func HandleRequest(w http.ResponseWriter, r *http.Request) {
-    target := getNextServer()
-    url, _ := url.Parse(target)
+	target := GetNextServer()
+	if target == "" {
+		http.Error(w, "No active servers available", http.StatusServiceUnavailable)
+		return
+	}
 
-    proxy := httputil.NewSingleHostReverseProxy(url)
-    proxy.ServeHTTP(w, r)
+	fmt.Println("Forwarding request to:", target)
+
+	u, _ := url.Parse(target)
+
+	proxy := httputil.NewSingleHostReverseProxy(u)
+
+	r.URL.Host = u.Host
+	r.URL.Scheme = u.Scheme
+	r.Host = u.Host
+
+	proxy.ServeHTTP(w, r)
 }

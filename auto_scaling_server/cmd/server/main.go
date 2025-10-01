@@ -6,6 +6,7 @@ import (
 
 	"autoscaling-server/internal/autoscaler"
 	"autoscaling-server/internal/metrics"
+
 	"github.com/gin-gonic/gin"
 )
 
