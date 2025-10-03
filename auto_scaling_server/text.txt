@@ -1,0 +1,43 @@
+Client / Users
+      |
+      v
+[CDN Layer] (Optional)
+- Caches static content (images, JS, CSS)
+- Offloads traffic from servers
+- DDoS protection & global distribution
+
+      |
+      v
+[Nginx Reverse Proxy / Load Balancer]
+- Handles HTTPS/SSL termination
+- Rate limiting per IP or per endpoint
+- Caching dynamic content
+- Balances requests across backend servers
+
+      |
+      v
+[Kubernetes Cluster]
+- Runs backend server pods (Docker containers)
+- Horizontal Pod Autoscaler (HPA) scales pods based on CPU, memory, or custom metrics
+- Ensures high availability and fault tolerance
+
+      |
+      v
+[Backend Server Pods]
+- Go server processes business logic
+- Expose `/health` and `/metrics` endpoints
+- Stateless to allow horizontal scaling
+
+      |
+      v
+[Observability & Monitoring]
+- Prometheus collects metrics from servers and Nginx
+- Grafana visualizes CPU, memory, request latency, throughput
+- Alerts on thresholds
+
+      |
+      v
+[Optional Redis / Kafka / DB]
+- Redis: cache frequent queries
+- Kafka: queue requests or handle high-load bursts
+- Database: persistent storage

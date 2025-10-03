@@ -2,34 +2,46 @@ package main
 
 import (
     "fmt"
-    "io/ioutil"
+    "io"
     "net/http"
 
     "github.com/gin-gonic/gin"
 )
 
-const URL = "https://jsonplaceholder.typicode.com/posts"
+const URL1 = "https://jsonplaceholder.typicode.com/posts"
+const URL2 = "https://jsonplaceholder.typicode.com/users"
 
 func main() {
     router := gin.Default()
-    router.GET("/", getPosts)
+    router.GET("/", getData)
 
     router.Run("localhost:3000")
 }
 
-func getPosts(c *gin.Context) {
-    resp, err := http.Get(URL)
-
+func fetchUrl(URL string) *http.Response {
+    res, err := http.Get(URL)
+    
     if err != nil {
         fmt.Printf(err.Error())
     }
 
-    defer resp.Body.Close()
+    return res
+}
 
-    res, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-        fmt.Println("Error reading response's body", err.Error())
+func getData(c* gin.Context) {
+    resp1 := fetchUrl(URL1)
+    resp2 := fetchUrl(URL2)
+
+    defer resp1.Body.Close()
+    defer resp2.Body.Close()
+
+    res1, err1 := io.ReadAll(resp1.Body)
+    res2, err2 := io.ReadAll(resp2.Body)
+    
+    if err1 != nil || err2 != nil {
+        fmt.Println("Error reading resp1onse's body", err1.Error())
     }
-
-    fmt.Println("This is the response: ", string(res))
+   
+    fmt.Printf(string(res1))
+    fmt.Printf(string(res2))
 }
