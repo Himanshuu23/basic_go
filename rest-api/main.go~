@@ -1,0 +1,16 @@
+package main
+
+import (
+	"api/internal/config"
+	"api/internal/routes"
+
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	router := gin.Default()
+
+	routes.RegisterAlbumRoutes(router)
+
+	router.Run(config.ServerPort)
+}
