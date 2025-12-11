@@ -1,21 +1,22 @@
-package main
+package handlers
 
 import (
 	"fmt"
 	"net/http"
+	"socket/internal/config"
 
 	"github.com/gorilla/websocket"
 )
 
 var upgrader = websocket.Upgrader{
-	ReadBufferSize: 1024,
-	WriteBufferSize: 1024,
+	ReadBufferSize: config.ReadBufferSize,
+	WriteBufferSize: config.WriteBufferSize,
 	CheckOrigin: func(r *http.Request) bool{
 		return true	
 	},
 }
 
-func handleWebsocket(w http.ResponseWriter, r *http.Request) {
+func HandleWebsocket(w http.ResponseWriter, r *http.Request) {
 	conn, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		fmt.Println(err)
@@ -40,10 +41,3 @@ func handleWebsocket(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func main() {
-	http.HandleFunc("/ws", handleWebsocket)
-	fmt.Println("Websocket server is running on :8080/ws")
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		fmt.Println(err)
-	}
-}
