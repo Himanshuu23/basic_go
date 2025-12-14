@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  web1:
+    build:
+    container_name: web1
+    environment:
+    - SERVER_NAME=web1
+
+  web2:
+    build:
+    container_name: web2
+    environment:
+    - SERVER_NAME=web2
