@@ -1,0 +1,17 @@
+# Go
+bin/
+*.exe
+*.test
+*.out
+
+# Docker
+*.tar
+*.log
+docker-compose.yml
+
+# IDEs
+.vscode/
+.idea/
+
+# Node/npm (if any)
+node_modules/

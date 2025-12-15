@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  web1:
+    build: .
+    environment:
+      - PORT=90
+
+  web2:
+    build: .
+    environment:
+      - PORT=90
+
+  balancer:
+    image: nginx
+    ports:
+      - "80:80"
