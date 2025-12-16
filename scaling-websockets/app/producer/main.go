@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/IBM/sarama"
 )
@@ -16,7 +18,7 @@ type Payment struct {
 
 func main() {
 	http.HandleFunc("/pay", makePayment)
-	log.Fatal(http.ListenAndServe(":3000", nil))
+	log.Fatal(http.ListenAndServe(":90", nil))
 }
 
 func ConnectProducer(brokers []string) (sarama.SyncProducer, error) {
@@ -29,7 +31,7 @@ func ConnectProducer(brokers []string) (sarama.SyncProducer, error) {
 }
 
 func PushOrderToQueue(topic string, message []byte) error {
-	brokers := []string{"localhost:9092"}
+	brokers := []string{"queue:9092"}
 	
 	producer, err := ConnectProducer(brokers)
 	if (err != nil) {
@@ -61,6 +63,9 @@ func makePayment(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
 		return
 	}
+	
+	host, _ := os.Hostname();
+	fmt.Fprintf(w, "Response from %s\n", host)
 
 	paymentOrder := new(Payment)
 	if err := json.NewDecoder(r.Body).Decode(paymentOrder); err != nil {

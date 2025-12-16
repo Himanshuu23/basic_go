@@ -13,7 +13,7 @@ func main() {
 	topic := "payment_orders"
 	msgCnt := 0
 
-	worker, err := ConnectConsumer([]string{"localhost:9092"})
+	worker, err := ConnectConsumer([]string{"queue:9092"})
 	if err != nil {
 		panic(err)
 	}

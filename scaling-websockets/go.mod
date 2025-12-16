@@ -1,4 +1,4 @@
-module consumer
+module scaling_sockets
 
 go 1.25.4
 

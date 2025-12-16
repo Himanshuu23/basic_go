@@ -1,0 +1,12 @@
+# Go
+/bin/
+/obj/
+/vendor/
+
+# Docker
+*.env
+*.log
+*.tmp
+docker-compose.yml
+/app/server
+/app/consumer
