@@ -1,0 +1,37 @@
+{
+  "dashboard": {
+    "title": "Video Chat Metrics",
+    "panels": [
+      {
+        "title": "Active Connections",
+        "targets": [
+          {
+            "expr": "sum(videochat_active_connections)",
+            "refId": "A"
+          }
+        ],
+        "type": "graph"
+      },
+      {
+        "title": "Total Rooms",
+        "targets": [
+          {
+            "expr": "sum(videochat_total_rooms)",
+            "refId": "A"
+          }
+        ],
+        "type": "graph"
+      },
+      {
+        "title": "Messages by Type",
+        "targets": [
+          {
+            "expr": "sum(rate(videochat_messages_processed_total[5m])) by (type)",
+            "refId": "A"
+          }
+        ],
+        "type": "graph"
+      }
+    ]
+  }
+}

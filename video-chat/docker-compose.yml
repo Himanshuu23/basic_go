@@ -1,0 +1,139 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    networks:
+      - video-chat-network
+
+  signaling-1:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      - SERVER_ID=signaling-1
+      - REDIS_URL=redis:6379
+      - PORT=8080
+      - SFU_PORT=7000
+    ports:
+      - "8081:8080"
+      - "7001:7000"
+    depends_on:
+      - redis
+    networks:
+      - video-chat-network
+
+  signaling-2:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      - SERVER_ID=signaling-2
+      - REDIS_URL=redis:6379
+      - PORT=8080
+      - SFU_PORT=7000
+    ports:
+      - "8082:8080"
+      - "7002:7000"
+    depends_on:
+      - redis
+    networks:
+      - video-chat-network
+
+  signaling-3:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    environment:
+      - SERVER_ID=signaling-3
+      - REDIS_URL=redis:6379
+      - PORT=8080
+      - SFU_PORT=7000
+    ports:
+      - "8083:8080"
+      - "7003:7000"
+    depends_on:
+      - redis
+    networks:
+      - video-chat-network
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - signaling-1
+      - signaling-2
+      - signaling-3
+    networks:
+      - video-chat-network
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_WS_URL=ws://localhost/ws
+    networks:
+      - video-chat-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    networks:
+      - video-chat-network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+    depends_on:
+      - prometheus
+    networks:
+      - video-chat-network
+
+  loadtest:
+    build:
+      context: ./loadtest
+      dockerfile: Dockerfile
+    environment:
+      - WS_URL=ws://nginx/ws
+      - NUM_USERS=1000
+      - ROOM_ID=loadtest-room
+    depends_on:
+      - nginx
+    networks:
+      - video-chat-network
+    profiles:
+      - loadtest
+
+networks:
+  video-chat-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+  prometheus-data:
+  grafana-data:
